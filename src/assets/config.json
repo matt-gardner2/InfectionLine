@@ -1,0 +1,4 @@
+{
+    "production":false,
+    "authenticationLink":"https://hc2260.hqcatalyst.local/IDEA/api/account/profile?v=1"
+}
