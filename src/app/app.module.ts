@@ -6,9 +6,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ConfigService } from './services/config.service';
+import { DataService } from './services/data.service';
+import { MockService } from './services/mock.service';
 import { AuthenticationService } from './services/authentication.service';
 import { CashmereModule } from './cashmere/cashmere.module';
 import { NavComponent } from './nav/nav.component';
+import { InfectionLineFormComponent } from './infection-line-form/infection-line-form.component';
 
 export function configInit(configService:ConfigService){
   return () => configService.load();
@@ -20,7 +23,8 @@ export function authInit(authService:AuthenticationService){
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    InfectionLineFormComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ export function authInit(authService:AuthenticationService){
       useFactory: authInit,
       multi:true,
       deps: [AuthenticationService]
-    }
+    },
+    DataService,
+    MockService
   ],
   bootstrap: [AppComponent],
   exports:[

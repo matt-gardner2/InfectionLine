@@ -8,6 +8,8 @@ export class ConfigService {
 
   public production:boolean;
   public authenticationLink:string;
+  public baseUrl:string;
+  public infectiousDiseaseTableId:number;
 
   constructor(private http: HttpClient) { }
 
