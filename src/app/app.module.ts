@@ -12,6 +12,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { CashmereModule } from './cashmere/cashmere.module';
 import { NavComponent } from './nav/nav.component';
 import { InfectionLineFormComponent } from './infection-line-form/infection-line-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function configInit(configService:ConfigService){
   return () => configService.load();
@@ -27,6 +28,8 @@ export function authInit(authService:AuthenticationService){
     InfectionLineFormComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     CashmereModule,

@@ -1,1 +1,22 @@
-<p>infection-line-form works!</p>
+<ng-container *ngIf="authService.isAuthenticated">
+    <div class="row">
+        <div class="col-6">
+            <input [(ngModel)]="mrn" placeholder="Enter MRN" class="form-control" />
+        </div>
+        <div class="col-6">
+            <button hc-button (click)="searchMrn()" class="form-control">Search</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="!authService.isAuthenticated">
+    <div class="row">
+        <div class="col-12">
+            <span class="error">Your account has not been authenticated.</span>
+        </div>
+    </div>
+</ng-container>

@@ -24,6 +24,7 @@ export class AuthenticationService {
         this.isAuthenticated = false;
       }
       else {
+        this.isAuthenticated = true;
         let data = {userName:"mGardner"};
         Object.assign(this,data);
         return data;
