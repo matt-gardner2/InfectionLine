@@ -4,14 +4,236 @@
             <input [(ngModel)]="mrn" placeholder="Enter MRN" class="form-control" />
         </div>
         <div class="col-6">
-            <button hc-button (click)="searchMrn()" class="form-control">Search</button>
+            <button hc-button (click)="searchMrn()" class="form-control" buttonStyle="primary-alt">Search</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-3">
-            
+    <ng-container *ngIf="searched">
+        <div class="row">
+            <div class="col-12">
+                <button hc-button (click)="save()" class="form-control">Save</button>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-12">
+                <h2>{{mrn}} Results</h2>
+            </div>
+        </div>
+        <div class="row">   
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Quarter</hc-label>
+                    <input hcInput [(ngModel)]="model.QuarterNM" />
+                </hc-form-field>
+            </div>         
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Month</hc-label>
+                    <input hcInput [(ngModel)]="model.MonthNM" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Last Name</hc-label>
+                    <input hcInput [(ngModel)]="model.LastNM" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>First Name</hc-label>
+                    <input hcInput [(ngModel)]="model.FirstNM" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Middle Name</hc-label>
+                    <input hcInput [(ngModel)]="model.MiddleNM" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Birth Date:</hc-label>
+                    <input hcInput [hcDatepicker]="birthDatePicker" [(ngModel)]="model.BirthDT" placeholder="Select date..." />
+                    <hc-datepicker-toggle hcSuffix [for]="birthDatePicker"></hc-datepicker-toggle>
+                    <hc-datepicker #birthDatePicker></hc-datepicker>
+                    <hc-error>Please enter a valid date</hc-error>
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Age At Event</hc-label>
+                    <input hcInput type="number" [(ngModel)]="model.AgeAtEventAMT" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Gender</hc-label>
+                    <input hcInput [(ngModel)]="model.GenderCD" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Event Class</hc-label>
+                    <input hcInput [(ngModel)]="model.EventClassNM" required />
+                    <hc-error>An event class is required</hc-error>
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Event Type</hc-label>
+                    <input hcInput [(ngModel)]="model.EventTypeNM" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Facility</hc-label>
+                    <input hcInput [(ngModel)]="model.FacilityNM" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Unit</hc-label>
+                    <input hcInput [(ngModel)]="model.Unit" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Room</hc-label>
+                    <input hcInput [(ngModel)]="model.RoomNM" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Physician</hc-label>
+                    <input hcInput [(ngModel)]="model.PhysicianNM" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>DOA</hc-label>
+                    <input hcInput [(ngModel)]="model.Doa" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>DOD</hc-label>
+                    <input hcInput [(ngModel)]="model.Dod" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Expired</hc-label>
+                    <input hcInput [(ngModel)]="model.ExpiredFLG" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Contributed to Death</hc-label>
+                    <input hcInput [(ngModel)]="model.ContributedToDeathFLG" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Culture Date:</hc-label>
+                    <input hcInput [hcDatepicker]="cultureDatePicker" [(ngModel)]="model.CultureDT" placeholder="Select date..." />
+                    <hc-datepicker-toggle hcSuffix [for]="cultureDatePicker"></hc-datepicker-toggle>
+                    <hc-datepicker #cultureDatePicker></hc-datepicker>
+                    <hc-error>Please enter a valid date</hc-error>
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Culture Source</hc-label>
+                    <input hcInput [(ngModel)]="model.CultureSourceNM" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Organism</hc-label>
+                    <input hcInput [(ngModel)]="model.OrganismDSC" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Event Date:</hc-label>
+                    <input hcInput [hcDatepicker]="eventDatePicker" [(ngModel)]="model.EventDT" placeholder="Select date..." />
+                    <hc-datepicker-toggle hcSuffix [for]="eventDatePicker"></hc-datepicker-toggle>
+                    <hc-datepicker #eventDatePicker></hc-datepicker>
+                    <hc-error>Please enter a valid date</hc-error>
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>System Objective</hc-label>
+                    <input hcInput [(ngModel)]="model.IncludeInSystemObjectiveFLG" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Department</hc-label>
+                    <input hcInput [(ngModel)]="model.DepartmentNM" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Discharge Date:</hc-label>
+                    <input hcInput [hcDatepicker]="dischargePicker" [(ngModel)]="model.DischargeDT" placeholder="Select date..." />
+                    <hc-datepicker-toggle hcSuffix [for]="dischargePicker"></hc-datepicker-toggle>
+                    <hc-datepicker #dischargePicker></hc-datepicker>
+                    <hc-error>Please enter a valid date</hc-error>
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Injury</hc-label>
+                    <input hcInput [(ngModel)]="model.InjuryFLG" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>Admit Date:</hc-label>
+                    <input hcInput [hcDatepicker]="admitPicker" [(ngModel)]="model.AdmitDT" placeholder="Select date..." />
+                    <hc-datepicker-toggle hcSuffix [for]="admitPicker"></hc-datepicker-toggle>
+                    <hc-datepicker #admitPicker></hc-datepicker>
+                    <hc-error>Please enter a valid date</hc-error>
+                </hc-form-field>
+            </div>
+            <div class="col-4">                
+                <hc-form-field>
+                    <hc-label>Hospital Account ID</hc-label>
+                    <input hcInput [(ngModel)]="model.HospitalAccountID" />
+                </hc-form-field>
+            </div>
+            <div class="col-4">
+                <hc-form-field>
+                    <hc-label>EPIC Patient Type</hc-label>
+                    <input hcInput [(ngModel)]="model.EpicPatientTypeDSC" />
+                </hc-form-field>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <button hc-button (click)="save()" class="form-control">Save</button>
+            </div>
+        </div>
+    </ng-container>
 </ng-container>
 <ng-container *ngIf="!authService.isAuthenticated">
     <div class="row">

@@ -9,27 +9,34 @@ export class AuthenticationService {
 
   public userName:string;
   public isAuthenticated:boolean;
+  public authenticationLink:string;
+  public production:string;
 
   constructor(private http: HttpClient, public configService:ConfigService) { }
 
   load() : Promise<any>{
-    const promise = this.http.get(this.configService.authenticationLink)
-    .toPromise()
-    .then(data =>{
-      Object.assign(this, data);
-      this.isAuthenticated = true;
-      return data;
-    },error=>{
-      if (this.configService.production){
-        this.isAuthenticated = false;
-      }
-      else {
-        this.isAuthenticated = true;
-        let data = {userName:"mGardner"};
-        Object.assign(this,data);
-        return data;
-      }
+
+    return new Promise((resolve, reject)=>{
+      this.http.get('./assets/config.json').subscribe((configData)=>{
+        Object.assign(this, configData);
+        this.http.get(this.authenticationLink).subscribe(authData=>{
+          Object.assign(this, authData);
+          this.isAuthenticated = true;
+          resolve(authData);
+        },error=>{
+          console.log("error");
+          if (this.production){
+            this.isAuthenticated = false;
+          }
+          else {
+            this.isAuthenticated = true;
+            let authData = {userName:"mGardner"};
+            Object.assign(this,authData);
+            resolve(authData);
+            //return authData;
+          }
+        })
+      });
     });
-    return promise;
   }
 }

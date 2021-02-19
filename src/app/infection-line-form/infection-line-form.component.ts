@@ -12,14 +12,17 @@ import { InfectionLineDetail } from '../models/infectionLineDetail';
 export class InfectionLineFormComponent implements OnInit {
   public model:InfectionLineDetail;
   public mrn:string;
+  public searched:boolean;
 
   constructor(public authService:AuthenticationService, private data:DataService) { }
 
   ngOnInit(): void {
   }
   searchMrn(){
+    this.searched = false;
     this.data.getInfectiousDiseaseRecordByMrn(this.mrn).subscribe(x=>{
       this.model = x.records[0].data;
+      this.searched = true;
     });
   }
 

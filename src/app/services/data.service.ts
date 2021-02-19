@@ -7,18 +7,22 @@ import { RestService } from './rest.service';
 })
 export class DataService extends RestService {
   public getInfectiousDiseaseRecords(skip:number,top:number):Observable<any>{
+    let query = `/IDEA/api/entities/${this.config.infectiousDiseaseTableId}/records?$skip=${skip}&$top=${top}&v=1`;
     if (this.config.production){
-      return this.get(`/IDEA/api/entities/${this.config.infectiousDiseaseTableId}/records?$skip=${skip}&$top=${top}&v=1`);
+      return this.get(query);
     }
     else {
+      console.log(`Running Query: ${query}`);
       return of(this.mock.infectiousDiseaseRecords);
     }
   }
   public getInfectiousDiseaseRecordByMrn(mrn:string):Observable<any>{
+    let query = `/IDEA/api/entities/${this.config.infectiousDiseaseTableId}/records?$filter=MRN eq ${mrn}&v=1`;
     if (this.config.production){
-      return this.get(`/IDEA/api/entities/${this.config.infectiousDiseaseTableId}/records?$filter=MRN eq ${mrn}&v=1`);
+      return this.get(query);
     }
     else {
+      console.log(`Running Query: ${query}`);
       return of(this.mock.oneInfectiousDiseaseRecord);
     }
   }
